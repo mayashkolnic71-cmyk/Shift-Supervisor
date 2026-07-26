@@ -45,6 +45,13 @@
         .tab-btn.active { border-bottom: 3px solid #0284c7; color: #ffffff; font-weight: 700; }
         .efrat-card { transition: all 0.3s ease; }
         .efrat-card:hover { transform: translateY(-2px); }
+        @media print {
+            .no-print, .no-print * { display: none !important; }
+            body { background-color: white !important; color: black !important; }
+            .print-only { display: block !important; }
+            .shadow-lg, .shadow-md, .shadow-sm { box-shadow: none !important; }
+            .bg-gradient-to-r { background: none !important; }
+        }
     </style>
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col">
@@ -52,7 +59,7 @@
     <!-- HEADER / HERO SECTION -->
     <header class="bg-gradient-to-r from-brand-900 via-brand-800 to-brand-700 text-white shadow-lg relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10">
+        <div class="max-w-[96%] mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10">
             
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
@@ -64,8 +71,8 @@
                             מערך אשפוז גריאטרי
                         </span>
                     </div>
-                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                        פורטל ליווי והסמכה לאחראית משמרת
+                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1">
+                        תוכנית ההדרכה המדורגת להכשרת אחות לאחראית משמרת
                     </h1>
                     <p class="mt-1 text-brand-100 text-xs sm:text-sm max-w-2xl leading-relaxed">
                         כלי עבודה מותאם אישית לאחות אחראית ומנטורית לבנייה, מעקב, דף מנחה למבחן תרופות, סימולטור אפר"ת אינטראקטיבי, ייצוא דוחות אקסל והערכה מרובת מודרכים.
@@ -92,79 +99,86 @@
             </div>
 
             <!-- TRAINEE PROFILE SELECTOR BANNER -->
-            <div class="mt-6 bg-white/15 backdrop-blur-md rounded-xl p-4 border border-white/20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
-                <div class="flex items-center gap-3 w-full lg:w-auto">
-                    <div class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold text-lg border-2 border-white/40 shadow-sm" id="trainee-avatar">
+            <div class="mt-8 bg-white/10 backdrop-blur-xl rounded-2xl p-5 border border-white/20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-xl shadow-brand-900/20">
+                <div class="flex items-center gap-4 w-full lg:w-auto">
+                    <div class="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold text-xl border-2 border-white/40 shadow-inner" id="trainee-avatar">
                         מ1
                     </div>
                     <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-bold text-sm" id="display-trainee-name">מודרך/ת 1</span>
-                            <span class="text-[11px] bg-brand-500/40 text-brand-100 px-2 py-0.5 rounded border border-brand-300/30" id="display-trainee-exp">אחות חדשה ללא ניסיון</span>
+                        <div class="flex items-center gap-3">
+                            <span class="font-extrabold text-lg text-white" id="display-trainee-name">מודרך/ת 1</span>
+                            <span class="text-xs bg-brand-500/40 text-brand-50 px-2.5 py-0.5 rounded-md border border-brand-300/30 font-medium" id="display-trainee-exp">אחות חדשה ללא ניסיון</span>
                         </div>
-                        <div class="text-xs text-brand-200 flex flex-wrap gap-x-4 gap-y-1 mt-0.5">
-                            <span><i class="fa-solid fa-id-card text-teal-300"></i> ת.ז: <span id="display-trainee-id">---</span></span>
-                            <span><i class="fa-solid fa-hospital-user text-teal-300"></i> מחלקה: <span id="display-trainee-ward">חטיבה נשימתית (מונשמים)</span></span>
-                            <span><i class="fa-solid fa-user-nurse text-teal-300"></i> מנטורית: <span id="display-trainee-mentor">---</span></span>
+                        <div class="text-[13px] text-brand-50 flex flex-wrap gap-2.5 mt-3">
+                            <div class="flex items-center gap-2 bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 shadow-sm whitespace-nowrap">
+                                <i class="fa-solid fa-id-card text-brand-200"></i>
+                                <span class="opacity-90">ת.ז:</span>
+                                <span id="display-trainee-id" class="font-bold">---</span>
+                            </div>
+                            <div class="flex items-center gap-2 bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 shadow-sm whitespace-nowrap">
+                                <i class="fa-solid fa-hospital-user text-brand-200"></i>
+                                <span class="opacity-90">מחלקה:</span>
+                                <span id="display-trainee-ward" class="font-bold">חטיבה נשימתית (מונשמים)</span>
+                            </div>
+                            <div class="flex items-center gap-2 bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 shadow-sm whitespace-nowrap">
+                                <i class="fa-solid fa-user-nurse text-brand-200"></i>
+                                <span class="opacity-90">מנטורית:</span>
+                                <span id="display-trainee-mentor" class="font-bold">---</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Action Controls Bar -->
-                <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto justify-end">
-                    <select id="trainee-select" onchange="switchTraineeProfile(this.value)" class="bg-brand-900/80 text-white border border-brand-400/40 text-xs rounded-xl p-2 focus:ring-2 focus:ring-teal-400 outline-none font-medium">
+                <div class="no-print flex flex-wrap items-center gap-2.5 w-full lg:w-auto justify-end">
+                    <select id="trainee-select" onchange="switchTraineeProfile(this.value)" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs rounded-xl px-3 py-2 focus:ring-2 focus:ring-brand-400 outline-none font-medium transition-all cursor-pointer">
                         <!-- Populated by JS -->
                     </select>
 
-                    <button onclick="openNewTraineeModal()" class="bg-teal-500 hover:bg-teal-600 text-white px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-md whitespace-nowrap">
+                    <button onclick="openNewTraineeModal()" class="bg-brand-500 hover:bg-brand-400 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all flex items-center gap-2 shadow-lg shadow-brand-500/30 border-2 border-brand-300/80 whitespace-nowrap">
                         <i class="fa-solid fa-user-plus"></i> מודרך/ת חדש/ה
                     </button>
 
-                    <button onclick="exportToExcel()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-md whitespace-nowrap">
-                        <i class="fa-solid fa-file-excel"></i> ייצוא דוח אקסל
+                    <div class="w-px h-6 bg-white/20 mx-1 hidden sm:block"></div>
+
+                    <button onclick="window.print()" class="bg-slate-800/60 hover:bg-slate-700/80 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center gap-1.5 border border-slate-400/50 shadow-sm whitespace-nowrap tooltip-btn" title="הדפסה">
+                        <i class="fa-solid fa-print"></i> <span class="hidden sm:inline">הדפסה</span>
+                    </button>
+                    
+                    <button onclick="exportToExcel()" class="bg-emerald-600/80 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center gap-1.5 border border-emerald-400/60 shadow-sm whitespace-nowrap tooltip-btn" title="ייצוא לאקסל">
+                        <i class="fa-solid fa-file-excel text-emerald-100"></i> <span class="hidden sm:inline">ייצוא דוח</span>
                     </button>
 
-                    <button onclick="openResetTraineeModal()" class="bg-amber-500 hover:bg-amber-600 text-white px-2.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1 shadow-md" title="איפוס טופס למודרך הנוכחי">
-                        <i class="fa-solid fa-rotate-right"></i> איפוס מודרך
+                    <button onclick="openResetTraineeModal()" class="bg-amber-600/80 hover:bg-amber-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center gap-1.5 border border-amber-400/60 shadow-sm tooltip-btn" title="איפוס מודרך נוכחי">
+                        <i class="fa-solid fa-rotate-right text-amber-100"></i> <span class="hidden sm:inline">איפוס מודרך</span>
                     </button>
 
-                    <button onclick="openResetSystemModal()" class="bg-rose-600 hover:bg-rose-700 text-white px-2.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1 shadow-md" title="איפוס מערכת ואיפוס כל הנתונים">
+                    <button onclick="openResetSystemModal()" class="bg-rose-600/80 hover:bg-rose-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center gap-1.5 border border-rose-400/60 shadow-sm tooltip-btn" title="איפוס כל המערכת">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>
                 </div>
             </div>
-
-        </div>
-
-        <!-- MAIN NAVIGATION TABS -->
-        <div class="bg-white/10 backdrop-blur-md border-t border-white/10 mt-2">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <nav class="flex space-x-2 space-x-reverse overflow-x-auto py-2 scrollbar-none" id="main-tabs">
-                    <button onclick="switchTab('roadmap')" id="tab-roadmap" class="tab-btn active whitespace-nowrap px-4 py-2 text-sm font-medium text-white hover:text-brand-200 transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-route"></i> מפת הדרכים והשלבים
-                    </button>
-                    <button onclick="switchTab('prerequisites')" id="tab-prerequisites" class="tab-btn whitespace-nowrap px-4 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-file-signature"></i> תנאי סף וכשירות קלינית
-                    </button>
-                    <button onclick="switchTab('pharm-guide')" id="tab-pharm-guide" class="tab-btn whitespace-nowrap px-4 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-user-check"></i> דף מנחה למבחן תרופות
-                    </button>
-                    <button onclick="switchTab('guidance')" id="tab-guidance" class="tab-btn whitespace-nowrap px-4 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-book-open-reader"></i> דפי הכוונה ותירגול
-                    </button>
-                    <button onclick="switchTab('simulator')" id="tab-simulator" class="tab-btn whitespace-nowrap px-4 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-brain"></i> סימולטור אפר"ת אינטראקטיבי
-                    </button>
-                    <button onclick="switchTab('evaluation')" id="tab-evaluation" class="tab-btn whitespace-nowrap px-4 py-2 text-sm font-medium text-white/80 hover:text-white transition-colors flex items-center gap-2">
-                        <i class="fa-solid fa-clipboard-check"></i> כתב מינוי וכלי הערכה
-                    </button>
-                </nav>
-            </div>
+            
+            <!-- Navigation Tabs -->
+            <nav class="mt-6 flex flex-wrap gap-2 overflow-x-auto pb-2 no-scrollbar">
+                <button onclick="switchTab('guidance')" id="tab-guidance" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-book-open-reader"></i> דפי הכוונה ותירגול
+                </button>
+                <button onclick="switchTab('simulator')" id="tab-simulator" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-brain"></i> סימולטור אפר"ת אינטראקטיבי
+                </button>
+                <button onclick="switchTab('evaluation')" id="tab-evaluation" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-clipboard-check"></i> כתב מינוי וכלי הערכה
+                </button>
+                <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-list-check"></i> בוחן בטיחות תרופות
+                </button>
+            </nav>
         </div>
     </header>
 
     <!-- MAIN CONTENT CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+    <main class="max-w-[96%] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
 
         <!-- SECTION 1: ROADMAP & TIMELINE -->
         <section id="sec-roadmap" class="space-y-6">
@@ -183,29 +197,54 @@
                     </div>
                 </div>
 
-                <!-- Progress Tracker Bar -->
-                <div class="mb-8 bg-slate-100 rounded-xl p-4 border border-slate-200">
-                    <div class="flex justify-between text-xs font-semibold text-slate-700 mb-2">
-                        <span>התקדמות בביצוע משימות ההכשרה האישיות</span>
-                        <span id="tasks-count">0 / 12 משימות הושלמו</span>
+                <!-- Visual Stepper Flowline -->
+                <div class="mb-8 bg-slate-50 rounded-2xl p-6 border border-slate-200 shadow-sm relative overflow-hidden">
+                    <div class="text-center mb-6">
+                        <h3 class="text-lg font-bold text-slate-800">התקדמות במסלול ההכשרה</h3>
+                        <p id="tasks-count" class="text-sm text-brand-600 font-semibold mt-1">0 / 12 משימות הושלמו</p>
                     </div>
-                    <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
-                        <div id="progress-bar-fill" class="bg-brand-500 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    
+                    <div class="relative w-full max-w-4xl mx-auto pt-2 pb-4">
+                        <!-- Background Flow Line -->
+                        <div class="absolute top-[22px] left-8 right-8 h-2 bg-slate-200 rounded-full z-0" dir="rtl">
+                            <!-- Filled Flow Line -->
+                            <div id="flow-line-fill" class="h-full bg-brand-500 rounded-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                        </div>
+                        
+                        <!-- Stepper Nodes -->
+                        <div class="flex justify-between relative z-10 w-full px-2">
+                            <div class="flex flex-col items-center gap-2">
+                                <div id="step-1-circle" class="w-12 h-12 rounded-full bg-slate-100 border-4 border-slate-200 flex items-center justify-center text-slate-400 font-black shadow-sm transition-colors duration-500">1</div>
+                                <span class="text-xs font-bold text-slate-600">אוריינטציה</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2">
+                                <div id="step-2-circle" class="w-12 h-12 rounded-full bg-slate-100 border-4 border-slate-200 flex items-center justify-center text-slate-400 font-black shadow-sm transition-colors duration-500">2</div>
+                                <span class="text-xs font-bold text-slate-600">מיומנויות</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2">
+                                <div id="step-3-circle" class="w-12 h-12 rounded-full bg-slate-100 border-4 border-slate-200 flex items-center justify-center text-slate-400 font-black shadow-sm transition-colors duration-500">3</div>
+                                <span class="text-xs font-bold text-slate-600">מצבים מייצגים</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2">
+                                <div id="step-4-circle" class="w-12 h-12 rounded-full bg-slate-100 border-4 border-slate-200 flex items-center justify-center text-slate-400 font-black shadow-sm transition-colors duration-500">4</div>
+                                <span class="text-xs font-bold text-slate-600">הסמכה מלאה</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Timeline Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="flex flex-row w-full gap-4 pb-4">
                     
                     <!-- Phase 1 -->
-                    <div class="border border-slate-200 rounded-xl p-5 bg-gradient-to-b from-slate-50 to-white relative shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex-1 w-1/4 min-w-[200px] border border-slate-200 rounded-xl p-4 bg-gradient-to-b from-slate-50 to-white relative shadow-sm hover:border-brand-300 transition-all">
                         <div class="absolute -top-3 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                             שבועות 1 - 3
                         </div>
                         <h3 class="text-base font-bold text-slate-900 mt-2 mb-1">אוריינטציה ושגרה</h3>
                         <p class="text-xs text-slate-500 mb-4">היכרות מבנית, צוות רב-מקצועי ושגרת המשמרות (בוקר/ערב/לילה).</p>
                         
-                        <div class="space-y-2.5">
+                        <div class="space-y-1.5">
                             <label class="flex items-start gap-2.5 text-xs text-slate-700 cursor-pointer">
                                 <input type="checkbox" onchange="toggleTask('t0')" id="chk-t0" class="task-check mt-0.5 rounded text-brand-600 focus:ring-brand-500">
                                 <span>סיור והיכרות עם המבנה, חדר טיפולים וציודי החייאה</span>
@@ -222,14 +261,14 @@
                     </div>
 
                     <!-- Phase 2 -->
-                    <div class="border border-slate-200 rounded-xl p-5 bg-gradient-to-b from-slate-50 to-white relative shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex-1 w-1/4 min-w-[200px] border border-slate-200 rounded-xl p-4 bg-gradient-to-b from-slate-50 to-white relative shadow-sm hover:border-brand-300 transition-all">
                         <div class="absolute -top-3 right-4 bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                             עד 3 חודשים
                         </div>
                         <h3 class="text-base font-bold text-slate-900 mt-2 mb-1">מיומנויות וטיפול עצמאי</h3>
                         <p class="text-xs text-slate-500 mb-4">ניהול טיפול של עד 8 מטופלים, ביצוע אומדנים קליניים.</p>
                         
-                        <div class="space-y-2.5">
+                        <div class="space-y-1.5">
                             <label class="flex items-start gap-2.5 text-xs text-slate-700 cursor-pointer">
                                 <input type="checkbox" onchange="toggleTask('t3')" id="chk-t3" class="task-check mt-0.5 rounded text-brand-600 focus:ring-brand-500">
                                 <span class="font-semibold text-rose-700">מעבר מבחן פרמקולוגיה וחשבון רוקחי בכתב/בעל פה</span>
@@ -246,14 +285,14 @@
                     </div>
 
                     <!-- Phase 3 -->
-                    <div class="border border-slate-200 rounded-xl p-5 bg-gradient-to-b from-slate-50 to-white relative shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex-1 w-1/4 min-w-[200px] border border-slate-200 rounded-xl p-4 bg-gradient-to-b from-slate-50 to-white relative shadow-sm hover:border-brand-300 transition-all">
                         <div class="absolute -top-3 right-4 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                             עד 6 חודשים
                         </div>
                         <h3 class="text-base font-bold text-slate-900 mt-2 mb-1">מצבים מייצגים וחפיפה</h3>
                         <p class="text-xs text-slate-500 mb-4">הכנה לפעילות כאחראית משמרת תחת פיקוח צמוד של המנטורית.</p>
 
-                        <div class="space-y-2.5">
+                        <div class="space-y-1.5">
                             <label class="flex items-start gap-2.5 text-xs text-slate-700 cursor-pointer">
                                 <input type="checkbox" onchange="toggleTask('t6')" id="chk-t6" class="task-check mt-0.5 rounded text-brand-600 focus:ring-brand-500">
                                 <span>ביצוע דיון קליני והצגת מצב מייצג בנושא מחלקתי</span>
@@ -270,14 +309,14 @@
                     </div>
 
                     <!-- Phase 4 -->
-                    <div class="border border-slate-200 rounded-xl p-5 bg-gradient-to-b from-slate-50 to-white relative shadow-sm hover:border-brand-300 transition-all">
+                    <div class="flex-1 w-1/4 min-w-[200px] border border-slate-200 rounded-xl p-4 bg-gradient-to-b from-slate-50 to-white relative shadow-sm hover:border-brand-300 transition-all">
                         <div class="absolute -top-3 right-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                             עד 12 חודשים
                         </div>
                         <h3 class="text-base font-bold text-slate-900 mt-2 mb-1">הסמכה ועצמאות מלאה</h3>
                         <p class="text-xs text-slate-500 mb-4">הערכה מסכמת, מתן כתב מינוי ושיבוץ עצמאי בסידור העבודה.</p>
 
-                        <div class="space-y-2.5">
+                        <div class="space-y-1.5">
                             <label class="flex items-start gap-2.5 text-xs text-slate-700 cursor-pointer">
                                 <input type="checkbox" onchange="toggleTask('t9')" id="chk-t9" class="task-check mt-0.5 rounded text-brand-600 focus:ring-brand-500">
                                 <span>הערכת מיומנויות ניהוליות ע"י אחות אחראית מחלקה</span>
@@ -780,11 +819,258 @@
             </div>
         </section>
 
-    </main>
+        <!-- SECTION: QUIZ -->
+        <section id="sec-quiz" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden print-only-border">
+                <div class="bg-indigo-50 border-b border-indigo-100 p-6 flex items-center justify-between no-print">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 text-xl shadow-inner border border-indigo-200">
+                            <i class="fa-solid fa-file-medical"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-indigo-900">בוחן: הנחיות בטיחות במתן טיפול תרופתי</h2>
+                            <p class="text-indigo-700 text-sm mt-1">12 שאלות המבוססות על נהלי משרד הבריאות וקריטריוני בירס.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Print header, visible only in print -->
+                <div class="hidden print-only mb-6">
+                    <h2 class="text-2xl font-bold text-center">בוחן: הנחיות בטיחות במתן טיפול תרופתי ורפואי במערך הגריאטרי</h2>
+                    <div class="flex justify-between mt-4 border-b pb-2">
+                        <span>שם הנבחן: _______________</span>
+                        <span>תאריך: _______________</span>
+                        <span>ציון: _______________</span>
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-8">
+                    <form id="quiz-form" class="space-y-8">
+                        <!-- Q1 -->
+                        <div class="quiz-question border-b pb-6" data-answer="b">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">1. על פי קריטריוני בירס (Beers Criteria), מהי ההמלצה לגבי שימוש בתרופות אנטי-פסיכוטיות לטיפול בבעיות התנהגות בחולי דמנציה?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q1" value="a" class="mt-1"><span class="text-slate-700">א) מומלץ כקו טיפול ראשון לפני התערבות לא-תרופתית.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q1" value="b" class="mt-1"><span class="text-slate-700 font-medium">ב) יש להימנע מהשימוש אלא אם מוצו אפשרויות לא-פרמקולוגיות והמטופל מהווה סכנה לעצמו או לסביבה, עקב סיכון מוגבר לשבץ מוחי ותמותה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q1" value="c" class="mt-1"><span class="text-slate-700">ג) התרופות בטוחות לחלוטין ואין מגבלה על השימוש בהן בקשישים.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q1" value="d" class="mt-1"><span class="text-slate-700">ד) מומלץ להשתמש בהן רק בשילוב עם תרופות אנטי-כולינרגיות.</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> קריטריוני בירס קובעים שיש להימנע מאנטי-פסיכוטיים לבעיות התנהגות של דמנציה אלא אם אופציות לא-תרופתיות נכשלו והמטופל מהווה איום לעצמו או לאחרים. קיים סיכון מוגבר לאירועים מוחיים ותמותה.
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="quiz-question border-b pb-6" data-answer="c">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">2. מטופל גריאטרי אמור לקבל עירוי של אשלגן כלוריד (KCL). מהן ההנחיות למתן תרופה זו?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q2" value="a" class="mt-1"><span class="text-slate-700">א) יש לתת בקצב מהיר ככל הניתן כדי למנוע היפוקלמיה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q2" value="b" class="mt-1"><span class="text-slate-700">ב) ניתן להזליף בעזרת סופר טיפות ידני ללא הגבלה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q2" value="c" class="mt-1"><span class="text-slate-700 font-medium">ג) ההזלפה תתבצע באמצעות משאבת עירוי בלבד, קצב המתן לא יעלה על 20 mEq בשעה, ויש לבצע בקרה כפולה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q2" value="d" class="mt-1"><span class="text-slate-700">ד) יש להזריק את התרופה ישירות לווריד (IV Push) במינון של 40 mEq.</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> תמיסת אשלגן כלורי (KCL) היא תרופה בת סיכון. קצב המתן לא יעלה על 20 mEq בשעה, ויש להשתמש במשאבת עירוי אלקטרונית ולבצע בקרה כפולה.
+                            </div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="quiz-question border-b pb-6" data-answer="c">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">3. מטופלת מאושפזת במחלקה סיעודית וסובלת מדלקת בדרכי השתן. הוחלט לטפל בה באנטיביוטיקה תוך ורידית (IV) בתוך המחלקה... מהו אחד הקריטריונים ההכרחיים להכללתה בתוכנית זו?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q3" value="a" class="mt-1"><span class="text-slate-700">א) מצבה אינו יציב והיא זקוקה לטיפול נמרץ.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q3" value="b" class="mt-1"><span class="text-slate-700">ב) משך הטיפול צפוי להיות יומיים בלבד.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q3" value="c" class="mt-1"><span class="text-slate-700 font-medium">ג) מצבה יציב, יש לה אבחנה ברורה לטיפול, ונתקבלה הסכמה מהמטופלת או מבא כוחה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q3" value="d" class="mt-1"><span class="text-slate-700">ד) היא טרם נבדקה על ידי רופא ואין מקור ברור לחום.</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> הנוהל למתן טיפול תוך ורידי בגריאטריה כרונית מציין כקריטריונים את יציבות החולה, אבחנה וטיפול ברורים, וקבלת הסכמה.
+                            </div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="quiz-question border-b pb-6" data-answer="a">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">4. מהן ההנחיות למתן התרופה Alendronate (לטיפול באוסטיאופורוזיס)?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q4" value="a" class="mt-1"><span class="text-slate-700 font-medium">א) חצי שעה לפני אוכל ושתייה בבוקר, עם מי ברז, ויש להקפיד לא לשכב עד האוכל.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q4" value="b" class="mt-1"><span class="text-slate-700">ב) מיד לאחר ארוחה חלבית.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q4" value="c" class="mt-1"><span class="text-slate-700">ג) לפני השינה עם כוס חלב.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q4" value="d" class="mt-1"><span class="text-slate-700">ד) יחד עם סותרי חומצה למניעת צרבת.</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> יש לתת חצי שעה לפני אוכל ושתייה בבוקר עם מי ברז ולהקפיד לא לשכב עד האוכל כדי למנוע גירוי ושחיקת הוושט.
+                            </div>
+                        </div>
+                        
+                        <!-- Q5 -->
+                        <div class="quiz-question border-b pb-6" data-answer="b">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">5. מהי הדרך היחידה המותרת למתן תרופות ציטוטוקסיות (כגון מתוטרקסט) במסגרת המוסד הגריאטרי?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q5" value="a" class="mt-1"><span class="text-slate-700">א) מתן דרך הווריד (IV) בלבד.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q5" value="b" class="mt-1"><span class="text-slate-700 font-medium">ב) דרך אנטרלית (דרך הפה - PO) בלבד.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q5" value="c" class="mt-1"><span class="text-slate-700">ג) מתן תת-עורי (SC).</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q5" value="d" class="mt-1"><span class="text-slate-700">ד) כל דרכי המתן מותרות בהתאם למצב הקשיש.</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> על פי הנוהל במוסד הגריאטרי (כגון "בית הדר"), טיפול ציטוטוקסי יינתן בדרך אנטרלית בלבד, ולא דרך הוריד.
+                            </div>
+                        </div>
+
+                        <!-- Q6 -->
+                        <div class="quiz-question border-b pb-6" data-answer="b">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">6. כיצד יש לסמן מטופל הסובל מאלרגיה או רגישות למזון בזמן אשפוזו?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q6" value="a" class="mt-1"><span class="text-slate-700">א) רישום בתיק הרפואי הממוחשב בלבד.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q6" value="b" class="mt-1"><span class="text-slate-700 font-medium">ב) ענידת צמיד בצבע בולט עם פרטי הרגישות, וכן סימון בולט על מיטת המטופל וסימון מגש הארוחה שלו.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q6" value="c" class="mt-1"><span class="text-slate-700">ג) אין צורך בסימון מיוחד אם המטופל צלול ויכול להגיד ממה הוא סובל.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q6" value="d" class="mt-1"><span class="text-slate-700">ד) סימון בצמיד רגיל של בית החולים בתוספת מדבקה קטנה.</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> חוזר משרד הבריאות קובע כי מטופל עם רגישות יענוד צמיד בולט, ויש לסמן את מיטת המטופל ואת מגש הארוחה שלו.
+                            </div>
+                        </div>
+
+                        <!-- Q7 -->
+                        <div class="quiz-question border-b pb-6" data-answer="c">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">7. על פי קריטריוני בירס, מדוע יש להימנע משימוש כרוני בתרופות מקבוצת NSAIDs (כגון איבופרופן) בקשישים מעל גיל 75?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q7" value="a" class="mt-1"><span class="text-slate-700">א) סיכון מוגבר לעצירות חמורה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q7" value="b" class="mt-1"><span class="text-slate-700">ב) סכנה לאצירת שתן ובלבול.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q7" value="c" class="mt-1"><span class="text-slate-700 font-medium">ג) סיכון מוגבר לדימום במערכת העיכול (GI bleeding) או כיב פפטי.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q7" value="d" class="mt-1"><span class="text-slate-700">ד) הן גורמות לירידה מסוכנת בלחץ הדם.</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> תרופות NSAIDs מגבירות את הסיכון לדימום במערכת העיכול (GI bleeding) או כיבי קיבה, במיוחד בקבוצות סיכון.
+                            </div>
+                        </div>
+                        
+                        <!-- Q8 -->
+                        <div class="quiz-question border-b pb-6" data-answer="b">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">8. מהו התהליך הנדרש של "בקרה כפולה" (Double Check) בעת מתן תרופה "בת סיכון"?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q8" value="a" class="mt-1"><span class="text-slate-700">א) אחות אחת בודקת את התרופה פעמיים לפני המתן.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q8" value="b" class="mt-1"><span class="text-slate-700 font-medium">ב) בדיקה עצמאית ובלתי תלויה על ידי שני אנשי צוות של ההוראה הרפואית, זיהוי התכשיר, חישוב המינון וזיהוי המטופל.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q8" value="c" class="mt-1"><span class="text-slate-700">ג) אישור טלפוני של הרוקח ולאחריו מתן על ידי כוח עזר.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q8" value="d" class="mt-1"><span class="text-slate-700">ד) חתימה של שני רופאים על המרשם בבית המרקחת.</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> תהליך בקרה כפולה מתבצע על ידי 2 אנשי צוות באופן עצמאי ובלתי תלוי, וכולל בדיקת ההוראה, התכשיר, חישוב המינון וזיהוי המטופל לפני המתן.
+                            </div>
+                        </div>
+
+                        <!-- Q9 -->
+                        <div class="quiz-question border-b pb-6" data-answer="c">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">9. מהן הנחיות הטיפול המיידיות במקרה של שפך חומר ציטוטוקסי במחלקה?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q9" value="a" class="mt-1"><span class="text-slate-700">א) שטיפת האזור במים רותחים והמתנה לייבוש טבעי.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q9" value="b" class="mt-1"><span class="text-slate-700">ב) קריאה לעובד ניקיון שינקה את השפך עם מגב ומטלית רגילה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q9" value="c" class="mt-1"><span class="text-slate-700 font-medium">ג) סימון האזור המזוהם... ספיגת שיירי החומר בעזרת נייר מתוך "ערכת שפך", וניקוי יסודי של המשטח בתמיסה דטרגנטית 3 פעמים.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q9" value="d" class="mt-1"><span class="text-slate-700">ד) השלכת החומר שנשפך לפח האשפה הרגיל של המחלקה.</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> יש לסמן את האזור, לספוג בעזרת ציוד מערכת השפך, ולנקות את המשטח 3 פעמים לפחות בתמיסה דטרגנטית ומים.
+                            </div>
+                        </div>
+
+                        <!-- Q10 -->
+                        <div class="quiz-question border-b pb-6" data-answer="b">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">10. קשיש מטופל באנטיביוטיקה מסוג אמיקצין (Amikacin) דרך הווריד. מתי יש לקחת בדיקת דם לניטור רמת התרופה בדם (Trough)?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q10" value="a" class="mt-1"><span class="text-slate-700">א) 30 דקות לאחר סיום ההזלפה של המנה הראשונה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q10" value="b" class="mt-1"><span class="text-slate-700 font-medium">ב) בתוך 30 דקות לפני מתן המנה השלישית או הרביעית.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q10" value="c" class="mt-1"><span class="text-slate-700">ג) מיד עם הקבלה למחלקה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q10" value="d" class="mt-1"><span class="text-slate-700">ד) 60 דקות לאחר מתן דרך השריר (IM).</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> טבלת ניטור רמות תרופה בדם למתן Amikacin מנחה כי דגימת ה"שפל" (Trough) צריכה להילקח בתוך 30 דקות לפני מתן המנה השלישית או הרביעית.
+                            </div>
+                        </div>
+                        
+                        <!-- Q11 -->
+                        <div class="quiz-question border-b pb-6" data-answer="c">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">11. מטופל מקבל תרופה ממשפחת מעכבי משאבות פרוטונים (PPI) כגון אומפרזול. מתי יש לתת את התרופה?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q11" value="a" class="mt-1"><span class="text-slate-700">א) יחד עם הארוחה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q11" value="b" class="mt-1"><span class="text-slate-700">ב) מיד לפני השינה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q11" value="c" class="mt-1"><span class="text-slate-700 font-medium">ג) חצי שעה לפני האוכל.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q11" value="d" class="mt-1"><span class="text-slate-700">ד) שעתיים אחרי האוכל.</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> תרופות ממשפחת ה-PPI יש לתת חצי שעה לפני האוכל.
+                            </div>
+                        </div>
+
+                        <!-- Q12 -->
+                        <div class="quiz-question pb-2" data-answer="b">
+                            <h3 class="font-bold text-slate-800 mb-3 text-lg">12. מהי ההמלצה לגבי מתן אנטיהיסטמינים מדור ראשון (כגון דיפנהידראמין) בקשישים?</h3>
+                            <div class="space-y-2 pr-2">
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q12" value="a" class="mt-1"><span class="text-slate-700">א) מומלצים מאוד כטיפול בטוח לנדודי שינה.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q12" value="b" class="mt-1"><span class="text-slate-700 font-medium">ב) יש להימנע מהם בשל תכונות אנטי-כולינרגיות חזקות, סיכון לבלבול, יובש בפה ועצירות.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q12" value="c" class="mt-1"><span class="text-slate-700">ג) יש להשתמש בהם רק במינון כפול מהרגיל עקב פינוי מוגבר בכליות.</span></label>
+                                <label class="flex items-start gap-2 cursor-pointer p-2 rounded hover:bg-slate-50"><input type="radio" name="q12" value="d" class="mt-1"><span class="text-slate-700">ד) בטוחים לשימוש כל עוד הקשיש אינו סובל מאלרגיה למזון.</span></label>
+                            </div>
+                            <div class="explanation hidden mt-3 p-3 bg-green-50 text-green-800 rounded border border-green-200 text-sm">
+                                <strong>הסבר:</strong> קריטריוני בירס ממליצים להימנע מאנטיהיסטמינים מהדור הראשון בקשישים בשל היותם אנטי-כולינרגיים חזקים (סיכון לבלבול, יובש בפה ועוד).
+                            </div>
+                        </div>
+                        
+                        <div class="no-print pt-6 border-t border-slate-200 text-center">
+                            <button type="button" onclick="checkQuiz()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-bold shadow-md transition-colors text-lg">
+                                בדיקת תשובות
+                            </button>
+                            <p id="quiz-result" class="mt-4 font-bold text-lg hidden"></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script>
+                function checkQuiz() {
+                    let score = 0;
+                    const questions = document.querySelectorAll('.quiz-question');
+                    questions.forEach(q => {
+                        const inputs = q.querySelectorAll('input[type="radio"]');
+                        const selected = Array.from(inputs).find(r => r.checked);
+                        const answer = q.getAttribute('data-answer');
+                        const expl = q.querySelector('.explanation');
+                        
+                        // Disable inputs
+                        inputs.forEach(r => r.disabled = true);
+                        
+                        if (selected) {
+                            if (selected.value === answer) {
+                                score++;
+                                selected.parentElement.classList.add('bg-green-100', 'font-bold');
+                            } else {
+                                selected.parentElement.classList.add('bg-red-100', 'line-through');
+                            }
+                        }
+                        
+                        // highlight correct answer if missed
+                        Array.from(inputs).forEach(r => {
+                            if(r.value === answer) {
+                                r.parentElement.classList.add('text-green-800');
+                                if(!selected || selected.value !== answer) {
+                                    r.parentElement.classList.add('border', 'border-green-400', 'bg-green-50');
+                                }
+                            }
+                        });
+                        
+                        // Show explanation
+                        expl.classList.remove('hidden');
+                    });
+                    
+                    const resultP = document.getElementById('quiz-result');
+                    resultP.classList.remove('hidden');
+                    resultP.innerHTML = `הציון שלך: <span class="text-indigo-700 text-2xl">${score} / 12</span>`;
+                    resultP.classList.add('bg-indigo-50', 'p-4', 'rounded-xl', 'border', 'border-indigo-200');
+                }
+            </script>
+        </section>
+    </main>
 
     <!-- NEW TRAINEE MODAL -->
     <div id="new-trainee-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-        <div class="bg-white rounded-2xl p-6 max-w-lg w-full mx-4 shadow-2xl border border-slate-200 space-y-4">
+        <div class="bg-white rounded-2xl p-6 max-w-6xl w-full mx-4 shadow-2xl border border-slate-200 space-y-4">
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                 <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
                     <i class="fa-solid fa-user-plus text-brand-600"></i> יצירת פרופיל מודרך/ת חדש/ה
@@ -853,8 +1139,9 @@
 
     <!-- FOOTER -->
     <footer class="bg-slate-900 text-slate-400 text-xs py-6 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
+        <div class="max-w-[96%] mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-2">
             <p>מערך האשפוז הגריאטרי | מערך הנהלת הסיעוד והפיתוח המקצועי</p>
+            <p class="text-slate-400 font-medium">הערכה נוצרה על ידי מאיה שקולניק גזית -RN, BA, MHA, POLICY MANAGEMENT SPECIALIST</p>
             <p class="text-slate-500">פותח בהתאם להנחיות מנהל הסיעוד ובטיחות הטיפול | מעודכן לשנת 2026</p>
         </div>
     </footer>
@@ -1072,9 +1359,39 @@
             const total = 12;
             const percent = Math.round((count / total) * 100);
 
-            document.getElementById('tasks-count').innerText = `${count} / ${total} משימות הושלמו`;
-            document.getElementById('progress-bar-fill').style.width = `${percent}%`;
-            document.getElementById('progress-percent').innerText = `${percent}%`;
+            document.getElementById('tasks-count').innerText = `${count} / ${total} משימות הושלמו (${percent}%)`;
+            const flowLine = document.getElementById('flow-line-fill');
+            if(flowLine) flowLine.style.width = `${percent}%`;
+            
+            const progPercent = document.getElementById('progress-percent');
+            if (progPercent) progPercent.innerText = `${percent}%`;
+
+            // Update stepper nodes
+            const activeClasses = "w-12 h-12 rounded-full bg-brand-500 border-4 border-brand-200 flex items-center justify-center text-white font-black shadow-md transition-colors duration-500";
+            const inactiveClasses = "w-12 h-12 rounded-full bg-slate-100 border-4 border-slate-200 flex items-center justify-center text-slate-400 font-black shadow-sm transition-colors duration-500";
+            
+            for(let i=1; i<=4; i++) {
+                const circle = document.getElementById(`step-${i}-circle`);
+                if(circle) {
+                    if (count >= i * 3) {
+                        circle.className = activeClasses;
+                        circle.innerHTML = `<i class="fa-solid fa-check"></i>`;
+                    } else if (count >= (i - 1) * 3) {
+                        circle.className = "w-12 h-12 rounded-full bg-white border-4 border-brand-500 flex items-center justify-center text-brand-600 font-black shadow-sm transition-colors duration-500";
+                        circle.innerHTML = i;
+                    } else {
+                        circle.className = inactiveClasses;
+                        circle.innerHTML = i;
+                    }
+                }
+            }
+
+            // Update current phase based on tasks
+            let phaseText = "1 - 3";
+            if (count >= 3 && count < 6) phaseText = "3 חודש'";
+            else if (count >= 6 && count < 9) phaseText = "6 חודש'";
+            else if (count >= 9) phaseText = "12 חודש'";
+            document.getElementById('trainee-stat-stage').innerText = phaseText;
         }
 
         // PHARM STATUS UPDATE
