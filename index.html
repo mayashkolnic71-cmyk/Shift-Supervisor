@@ -174,7 +174,7 @@
                     <i class="fa-solid fa-list-check"></i> בוחן בטיחות תרופות
                 </button>
                 <button onclick="switchTab('protocols')" id="tab-protocols" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
-                    <i class="fa-solid fa-file-medical"></i> פרוטוקולים והנחיות
+                    <i class="fa-solid fa-file-medical"></i> פרוטוקולים והנחיות למתן טיפול תרופתי בטוח
                 </button>
             </nav>
         </div>
@@ -649,6 +649,9 @@
                     </button>
                     <button onclick="loadWorksheet('reflection')" id="ws-btn-reflection" class="ws-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">
                         4. יומן רפלקציה ותובנות קליניות
+                    </button>
+                    <button onclick="loadWorksheet('insulin')" id="ws-btn-insulin" class="ws-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">
+                        5. סימולציית אינסולין וסוכרת
                     </button>
                 </div>
 
@@ -2399,6 +2402,71 @@
                         </div>
                     </div>
                 `;
+            } else if (wsType === 'insulin') {
+                area.innerHTML = `
+                    <div class="space-y-6">
+                        <div class="bg-blue-50 border border-blue-200 p-6 rounded-2xl shadow-sm">
+                            <h3 class="text-blue-800 font-bold text-lg mb-2 flex items-center gap-2"><i class="fa-solid fa-syringe"></i> סימולציית מתן אינסולין והיפוגליקמיה</h3>
+                            <p class="text-sm text-blue-700 mb-6">תרגול המבוסס על נוהל מוסדי (יוני 2025) - טיפול בחולה סוכרת, מתן אינסולין וטיפול בהיפוגליקמיה.</p>
+                            
+                            <!-- Question 1 -->
+                            <div id="sim-q1" class="bg-white p-5 rounded-xl border border-blue-100 mb-4 shadow-sm transition-all">
+                                <h4 class="font-bold text-slate-800 mb-3">תרחיש 1: זיהוי היפוגליקמיה</h4>
+                                <p class="text-sm text-slate-700 mb-4">את בודקת מטופל בן 78. הוא נראה רועד, חיוור, מזיע ומבולבל. מה הפעולה הראשונה והדחופה ביותר שעלייך לבצע?</p>
+                                <div class="space-y-2">
+                                    <button onclick="handleSimAnswer('q1', false, 'טעות. אסור לתת אוכל לאדם מבולבל לפני שוידאנו את רמת הסוכר והכרתו. סכנת חנק!')" class="w-full text-right p-3 rounded-lg border border-slate-200 hover:bg-slate-50 hover:border-blue-300 transition-colors text-sm">א. להביא לו מיד כריך ומיץ מתוק.</button>
+                                    <button onclick="handleSimAnswer('q1', false, 'טעות. מתן אינסולין במצב זה עלול להרוג את המטופל אם מדובר בהיפוגליקמיה.')" class="w-full text-right p-3 rounded-lg border border-slate-200 hover:bg-slate-50 hover:border-blue-300 transition-colors text-sm">ב. להזריק אינסולין מהיר מיד.</button>
+                                    <button onclick="handleSimAnswer('q1', true, 'נכון מאוד! הסימנים מעידים על חשד להיפוגליקמיה (דרגה 2 או 3). בדיקת סוכר היא הפעולה הראשונה!')" class="w-full text-right p-3 rounded-lg border border-slate-200 hover:bg-slate-50 hover:border-blue-300 transition-colors text-sm">ג. לבדוק מיד רמת סוכר קפילרי בדם (גלוקומטר).</button>
+                                </div>
+                                <div id="sim-fb-q1" class="mt-4 hidden p-3 rounded-lg text-sm font-medium"></div>
+                            </div>
+
+                            <!-- Question 2 -->
+                            <div id="sim-q2" class="bg-white p-5 rounded-xl border border-blue-100 mb-4 shadow-sm hidden transition-all">
+                                <h4 class="font-bold text-slate-800 mb-3">תרחיש 2: טיפול בהיפוגליקמיה</h4>
+                                <p class="text-sm text-slate-700 mb-4">בדקת סוכר והתוצאה היא 54 מ"ג/ד"ל. המטופל בהכרה, אבל מבולבל מאוד ולא יכול לשתות. מה הטיפול הנכון?</p>
+                                <div class="space-y-2">
+                                    <button onclick="handleSimAnswer('q2', false, 'טעות. מתן כפיות סוכר למטופל מבולבל שלא יכול לבלוע עלול לגרום לאספירציה.')" class="w-full text-right p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors text-sm">א. מתן 3 כפיות סוכר מומסות במים לפה.</button>
+                                    <button onclick="handleSimAnswer('q2', true, 'מצוין! בהיפוגליקמיה דרגה 3 עם חוסר יכולת לבלוע, יש לתת גלוקגון IM/SC או גלוקוז 10% לוריד.')" class="w-full text-right p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors text-sm">ב. הזרקת גלוקגון 1 מ"ג לשריר (IM) או תת-עורי (SC), או גלוקוז לוריד (IV).</button>
+                                    <button onclick="handleSimAnswer('q2', false, 'טעות. מצב זה דורש התערבות מיידית, לא המתנה.')" class="w-full text-right p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors text-sm">ג. להמתין 15 דקות ולבדוק שוב.</button>
+                                </div>
+                                <div id="sim-fb-q2" class="mt-4 hidden p-3 rounded-lg text-sm font-medium"></div>
+                            </div>
+                            
+                            <!-- Question 3 -->
+                            <div id="sim-q3" class="bg-white p-5 rounded-xl border border-blue-100 shadow-sm hidden transition-all">
+                                <h4 class="font-bold text-slate-800 mb-3">תרחיש 3: חישוב אינסולין באשפוז</h4>
+                                <p class="text-sm text-slate-700 mb-4">מטופל שמקבל אינסולין בשיטת פקטור תיקון. הסוכר שלו כעת 220 מ"ג/ד"ל. לפי הנוהל הכללי (מעל 180), כמה יחידות אינסולין מהיר עליו לקבל? (בהנחה שרופא רשם: 150-200=8U, 201-250=10U)</p>
+                                <div class="space-y-2">
+                                    <button onclick="handleSimAnswer('q3', false, 'טעות. שימי לב לטבלת הפקטור.')" class="w-full text-right p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors text-sm">א. 8 יחידות</button>
+                                    <button onclick="handleSimAnswer('q3', true, 'נכון מאוד! לפי הטבלה, רמת סוכר של 220 נופלת בטווח של 201-250, לכן יש לתת 10 יחידות.')" class="w-full text-right p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors text-sm">ב. 10 יחידות</button>
+                                    <button onclick="handleSimAnswer('q3', false, 'טעות.')" class="w-full text-right p-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors text-sm">ג. 12 יחידות</button>
+                                </div>
+                                <div id="sim-fb-q3" class="mt-4 hidden p-3 rounded-lg text-sm font-medium"></div>
+                                <button id="sim-btn-finish" onclick="resetSim()" class="mt-6 hidden bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-6 rounded-xl text-sm transition-colors shadow-sm">
+                                    <i class="fa-solid fa-rotate-right ml-1"></i> התחל תרגול מחדש
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                window.handleSimAnswer = function(qId, isCorrect, feedbackText) {
+                    const fbDiv = document.getElementById("sim-fb-" + qId);
+                    fbDiv.classList.remove("hidden", "bg-emerald-100", "text-emerald-800", "bg-rose-100", "text-rose-800");
+                    fbDiv.innerText = feedbackText;
+                    
+                    if (isCorrect) {
+                        fbDiv.classList.add("bg-emerald-100", "text-emerald-800");
+                        if (qId === "q1") { setTimeout(() => { document.getElementById("sim-q2").classList.remove("hidden"); }, 1500); }
+                        else if (qId === "q2") { setTimeout(() => { document.getElementById("sim-q3").classList.remove("hidden"); }, 1500); }
+                        else if (qId === "q3") { document.getElementById("sim-btn-finish").classList.remove("hidden"); }
+                    } else {
+                        fbDiv.classList.add("bg-rose-100", "text-rose-800");
+                    }
+                };
+
+                window.resetSim = function() { loadWorksheet('insulin'); };
             }
         }
 
