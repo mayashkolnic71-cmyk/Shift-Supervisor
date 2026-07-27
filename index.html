@@ -160,21 +160,21 @@
             </div>
             
             <!-- Navigation Tabs -->
-            <nav class="mt-6 flex flex-nowrap whitespace-nowrap gap-2 overflow-x-auto pb-2 no-scrollbar">
+            <nav class="mt-4 md:mt-6 flex flex-col sm:flex-row sm:flex-wrap gap-2 overflow-x-auto pb-2 no-scrollbar">
                 <button onclick="switchTab('guidance')" id="tab-guidance" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-book-open-reader"></i> דפי הכוונה ותירגול
                 </button>
                 <button onclick="switchTab('simulator')" id="tab-simulator" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-brain"></i> סימולטור אפר"ת אינטראקטיבי
                 </button>
-                <button onclick="switchTab('evaluation')" id="tab-evaluation" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
-                    <i class="fa-solid fa-clipboard-check"></i> כתב מינוי וכלי הערכה
-                </button>
                 <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-list-check"></i> בוחן בטיחות תרופות
                 </button>
                 <button onclick="switchTab('protocols')" id="tab-protocols" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-file-medical"></i> פרוטוקולים והנחיות למתן טיפול תרופתי בטוח
+                </button>
+                <button onclick="switchTab('evaluation')" id="tab-evaluation" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-clipboard-check"></i> כתב מינוי וכלי הערכה
                 </button>
                 <button onclick="switchTab('agent')" id="tab-agent" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-purple-300 hover:bg-white/10 hover:text-purple-100 transition-all flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-robot"></i> סקירת סוכן חודשית
@@ -184,7 +184,7 @@
     </header>
 
     <!-- MAIN CONTENT CONTAINER -->
-    <main class="max-w-[96%] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+    <main class="max-w-[96%] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8 flex-grow w-full">
 
         <!-- SECTION 1: ROADMAP & TIMELINE -->
         <section id="sec-roadmap" class="space-y-6">
