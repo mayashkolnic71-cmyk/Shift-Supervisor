@@ -161,6 +161,12 @@
             
             <!-- Navigation Tabs -->
             <nav class="mt-4 md:mt-6 flex flex-col sm:flex-row sm:flex-wrap gap-2 overflow-x-auto pb-2 no-scrollbar">
+                <button onclick="switchTab('roadmap')" id="tab-roadmap" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm active text-white">
+                    <i class="fa-solid fa-timeline"></i> מפת הדרכים והשלבים
+                </button>
+                <button onclick="switchTab('prerequisites')" id="tab-prerequisites" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-user-check"></i> תנאי סף וכשירות קלינית
+                </button>
                 <button onclick="switchTab('guidance')" id="tab-guidance" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-book-open-reader"></i> דפי הכוונה ותירגול
                 </button>
@@ -836,7 +842,39 @@
                     </table>
                 </div>
 
-                </section>
+                
+<!-- REFLECTION JOURNAL (Moved) -->
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-4">
+                        <div class="flex justify-between items-center border-b border-slate-200 pb-3">
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm">דף תירגול 4: יומן רפלקציה אישי למודרך/ת: <span class="eval-trainee-name-refl">מודרך/ת 1</span></h3>
+                                <p class="text-xs text-slate-500">תעוד ועיבוד אירועים קליניים וניהוליים שחווית במהלך החפיפה במשמרת</p>
+                            </div>
+                            <span class="bg-purple-100 text-purple-800 text-[11px] font-bold px-2.5 py-1 rounded-md">למידה מניסיון</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <label class="block font-bold text-slate-800 mb-1">אירוע מרכזי שחוויתי במשמרת:</label>
+                                <textarea onchange="updateWsData('refl_1', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="תאר בקצרה אירוע מורכב (קליני, בטיחותי או בין-אישי)..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-800 mb-1">מה תפקדתי טוב באירוע זה?</label>
+                                <textarea onchange="updateWsData('refl_2', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="נקודות חוזק, שיקול דעת, תקשורת, קבלת החלטות..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-800 mb-1">מה היית מבצע/ת אחרת לפעם הבאה?</label>
+                                <textarea onchange="updateWsData('refl_3', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="הפקת לקחים, התייעצות מוקדמת, ניהול זמן..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-800 mb-1">תובנה מרכזית או נושא לחיזוק מול המנטורית:</label>
+                                <textarea onchange="updateWsData('refl_4', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="יעד אישי ללמידה או תרגול חוזר..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                
+</section>
 
         <!-- SECTION: QUIZ -->
         <section id="sec-quiz" class="hidden space-y-6">
@@ -2412,38 +2450,7 @@
                         </div>
                     </div>
                 `;
-            } else if (wsType === 'reflection') {
-                area.innerHTML = `
-                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-4">
-                        <div class="flex justify-between items-center border-b border-slate-200 pb-3">
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-sm">דף תירגול 4: יומן רפלקציה אישי למודרך/ת: ${t.name || 'מודרך/ת'}</h3>
-                                <p class="text-xs text-slate-500">תעוד ועיבוד אירועים קליניים וניהוליים שחווית במהלך החפיפה במשמרת</p>
-                            </div>
-                            <span class="bg-purple-100 text-purple-800 text-[11px] font-bold px-2.5 py-1 rounded-md">למידה מניסיון</span>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                            <div>
-                                <label class="block font-bold text-slate-800 mb-1">אירוע מרכזי שחוויתי במשמרת:</label>
-                                <textarea onchange="updateWsData('refl_1', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="תאר בקצרה אירוע מורכב (קליני, בטיחותי או בין-אישי)...">${t.worksheets?.refl_1 || ''}</textarea>
-                            </div>
-                            <div>
-                                <label class="block font-bold text-slate-800 mb-1">מה תפקדתי טוב באירוע זה?</label>
-                                <textarea onchange="updateWsData('refl_2', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="נקודות חוזק, שיקול דעת, תקשורת, קבלת החלטות...">${t.worksheets?.refl_2 || ''}</textarea>
-                            </div>
-                            <div>
-                                <label class="block font-bold text-slate-800 mb-1">מה היית מבצע/ת אחרת לפעם הבאה?</label>
-                                <textarea onchange="updateWsData('refl_3', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="הפקת לקחים, התייעצות מוקדמת, ניהול זמן...">${t.worksheets?.refl_3 || ''}</textarea>
-                            </div>
-                            <div>
-                                <label class="block font-bold text-slate-800 mb-1">תובנה מרכזית או נושא לחיזוק מול המנטורית:</label>
-                                <textarea onchange="updateWsData('refl_4', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="יעד אישי ללמידה או תרגול חוזר...">${t.worksheets?.refl_4 || ''}</textarea>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (wsType === 'insulin') {
+            } else if (wsType === 'reflection') { switchTab('evaluation'); document.getElementById('sec-evaluation').scrollIntoView({behavior: 'smooth'}); } else if (wsType === 'insulin') {
                 area.innerHTML = `
                     <div class="space-y-6">
                         <div class="bg-blue-50 border border-blue-200 p-6 rounded-2xl shadow-sm">
