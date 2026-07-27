@@ -886,6 +886,44 @@
                 </h2>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Structured Feedback Framework (4 Steps) -->
+                    <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-5 space-y-4">
+                        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-comments text-indigo-600"></i> טופס הכנה לשיחת משוב (עמוד 10)
+                        </h3>
+                        <p class="text-xs text-slate-600 mb-2">מלאי את 4 הנקודות המרכזיות לקראת שיחת המשוב עם המודרכת:</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <label class="block font-bold text-slate-800 mb-1">נקודות לשימור וחוזקות:</label>
+                                <textarea id="fb-f1" onchange="updateFeedbackText('f1', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="פירוט חוזקות ודברים טובים..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-800 mb-1">הישגים בולטים:</label>
+                                <textarea id="fb-f2" onchange="updateFeedbackText('f2', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="הישגים משמעותיים מתקופת החונכות..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-800 mb-1">נקודות לשיפור וחיזוק:</label>
+                                <textarea id="fb-f3" onchange="updateFeedbackText('f3', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="דברים שעדיין דורשים עבודה..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-800 mb-1">יעדים ומשימות להמשך:</label>
+                                <textarea id="fb-f4" onchange="updateFeedbackText('f4', this.value)" rows="3" class="w-full rounded-lg border-slate-300 p-2 text-xs focus:ring-brand-500 focus:border-brand-500" placeholder="יעדים קונקרטיים..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Core Competencies Link -->
+                    <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-5 flex flex-col justify-center items-center text-center space-y-4">
+                        <i class="fa-solid fa-book-medical text-4xl text-indigo-400"></i>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">פעולות ליבה של אחות מוסמכת</h3>
+                            <p class="text-xs text-slate-600">צפי בחוברת הדיגיטלית העדכנית של מנהל האֲחָיוּת לגבי פעולות ליבה.</p>
+                        </div>
+                        <a href="https://www.gov.il/he/departments/topics/nursing" target="_blank" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-5 rounded-lg text-sm transition-colors shadow-sm">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> פתיחת החוברת הדיגיטלית
+                        </a>
+                    </div>
+
                     <!-- Ask Me 5 Clinical Discussion -->
                     <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-5 space-y-4 lg:col-span-2">
                         <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
