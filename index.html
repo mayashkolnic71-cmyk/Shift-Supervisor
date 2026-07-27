@@ -12,7 +12,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- SheetJS for Excel Export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script>
+    
+        <!-- SECTION 8: MENTOR TOOLKIT -->
+        <section id="sec-mentor" class="space-y-6 hidden">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80">
+                <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2 mb-6 border-b border-slate-100 pb-4">
+                    <i class="fa-solid fa-toolbox text-emerald-500"></i> ארגז כלים למנטורית
+                </h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Ask Me 5 Clinical Discussion -->
+                    <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-5 space-y-4 lg:col-span-2">
+                        <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-comments-medical text-indigo-600"></i> כלי לניהול דיון קליני: מטודת "שאל אותי 5!"
+                        </h3>
+                        <p class="text-xs text-slate-600 mb-2">היעזרי במודל זה כדי לנהל דיון קליני מעמיק עם האחות הנקלטת לגבי מטופל מחלקה:</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-700">
+                            <div class="flex items-start gap-3 bg-white p-3 rounded-lg shadow-sm border border-indigo-50">
+                                <div class="bg-indigo-100 text-indigo-700 font-bold px-2 py-1 rounded">1</div>
+                                <div>
+                                    <strong class="block text-indigo-900">אבחנה</strong>
+                                    מה האבחנה המשוערת? (מקור: קבלה רפואית ואֲחָיוּתית)
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 bg-white p-3 rounded-lg shadow-sm border border-indigo-50">
+                                <div class="bg-indigo-100 text-indigo-700 font-bold px-2 py-1 rounded">2</div>
+                                <div>
+                                    <strong class="block text-indigo-900">תלונות בקבלה / היום</strong>
+                                    מה הסימנים והסימפטומים? (מקור: מעקב יומי)
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 bg-white p-3 rounded-lg shadow-sm border border-indigo-50">
+                                <div class="bg-indigo-100 text-indigo-700 font-bold px-2 py-1 rounded">3</div>
+                                <div>
+                                    <strong class="block text-indigo-900">מעבדה והדמיה</strong>
+                                    ממצאים רלוונטיים לאבחנה (מקור: תוצאות מעבדה ודימות)
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 bg-white p-3 rounded-lg shadow-sm border border-indigo-50">
+                                <div class="bg-indigo-100 text-indigo-700 font-bold px-2 py-1 rounded">4</div>
+                                <div>
+                                    <strong class="block text-indigo-900">ייעוצים</strong>
+                                    מי היועץ? תוכן הייעוץ והמלצות (מקור: מסמך ייעוץ)
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 bg-white p-3 rounded-lg shadow-sm border border-indigo-50 md:col-span-2">
+                                <div class="bg-indigo-100 text-indigo-700 font-bold px-2 py-1 rounded">5</div>
+                                <div>
+                                    <strong class="block text-indigo-900">תוכנית טיפול</strong>
+                                    המעקב הנדרש, הנחיות מיוחדות, בדיקות (מקור: מעקב רפואי ואֲחָיוּתי)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -182,6 +238,9 @@
                 <button onclick="switchTab('evaluation')" id="tab-evaluation" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-clipboard-check"></i> כתב מינוי וכלי הערכה
                 </button>
+                <button onclick="switchTab('mentor')" id="tab-mentor" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-white/80 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-toolbox"></i> ארגז כלים למנטורית
+                </button>
                 <button onclick="switchTab('agent')" id="tab-agent" class="tab-btn whitespace-nowrap px-5 py-3 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-purple-300 hover:bg-white/10 hover:text-purple-100 transition-all flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-robot"></i> סקירת סוכן חודשית
                 </button>
